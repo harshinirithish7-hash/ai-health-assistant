@@ -1,1 +1,99 @@
-creates test1.txt file
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Health Assistant</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f8ff;
+            text-align:center;
+            padding:50px;
+        }
+
+        .container{
+            background:white;
+            width:400px;
+            margin:auto;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            color:#0077cc;
+        }
+
+        input{
+            width:80%;
+            padding:10px;
+            margin:10px 0;
+        }
+
+        button{
+            padding:10px 20px;
+            background:#0077cc;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        #result{
+            margin-top:20px;
+            font-weight:bold;
+            color:green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AI Health Assistant</h1>
+
+    <input type="text" id="symptom" placeholder="Enter your symptom">
+
+    <br>
+
+    <button onclick="predictDisease()">
+        Check Health
+    </button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function predictDisease(){
+
+    let symptom =
+        document.getElementById("symptom")
+        .value
+        .toLowerCase();
+
+    let prediction = "";
+
+    if(symptom === "fever"){
+        prediction = "Possible Viral Infection";
+    }
+    else if(symptom === "cough"){
+        prediction = "Possible Respiratory Infection";
+    }
+    else if(symptom === "headache"){
+        prediction = "Possible Migraine or Stress";
+    }
+    else if(symptom === "cold"){
+        prediction = "Common Cold";
+    }
+    else if(symptom === "fatigue"){
+        prediction = "Possible Weakness or Anemia";
+    }
+    else{
+        prediction = "Please consult a doctor.";
+    }
+
+    document.getElementById("result").innerHTML =
+        "AI Suggestion: " + prediction;
+}
+</script>
+
+</body>
+</html>
