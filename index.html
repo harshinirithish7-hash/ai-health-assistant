@@ -1,98 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AI Health Assistant</title>
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#f4f8ff;
-            text-align:center;
-            padding:50px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Health Assistant</title>
 
-        .container{
-            background:white;
-            width:400px;
-            margin:auto;
-            padding:25px;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,0,0,0.2);
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
 
-        h1{
-            color:#0077cc;
-        }
+body{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#06b6d4);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
-        input{
-            width:80%;
-            padding:10px;
-            margin:10px 0;
-        }
+.card{
+    width:420px;
+    padding:30px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 0 30px rgba(0,255,255,0.4);
+    text-align:center;
+    color:white;
+}
 
-        button{
-            padding:10px 20px;
-            background:#0077cc;
-            color:white;
-            border:none;
-            border-radius:5px;
-            cursor:pointer;
-        }
+.logo{
+    font-size:55px;
+    margin-bottom:10px;
+}
 
-        #result{
-            margin-top:20px;
-            font-weight:bold;
-            color:green;
-        }
-    </style>
+h1{
+    color:#00ffff;
+    margin-bottom:10px;
+}
+
+p{
+    color:#dbeafe;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#00ffff;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px cyan;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.1);
+    display:none;
+}
+
+.footer{
+    margin-top:15px;
+    font-size:12px;
+    color:#cbd5e1;
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>AI Health Assistant</h1>
+<div class="card">
 
-    <input type="text" id="symptom" placeholder="Enter your symptom">
+<div class="logo">🏥</div>
 
-    <br>
+<h1>AI Health Assistant</h1>
 
-    <button onclick="predictDisease()">
-        Check Health
-    </button>
+<p>Smart Healthcare in Your Pocket</p>
 
-    <div id="result"></div>
+<input type="text" id="symptom"
+placeholder="Enter your symptom...">
+
+<button onclick="analyzeHealth()">
+🔍 Analyze Health
+</button>
+
+<div class="result" id="result"></div>
+
+<div class="footer">
+Powered by WitchCraft Coders 🚀
+</div>
+
 </div>
 
 <script>
-function predictDisease(){
 
-    let symptom =
-        document.getElementById("symptom")
-        .value
-        .toLowerCase();
+function analyzeHealth(){
 
-    let prediction = "";
+let symptom=document
+.getElementById("symptom")
+.value.toLowerCase();
 
-    if(symptom === "fever"){
-        prediction = "Possible Viral Infection";
-    }
-    else if(symptom === "cough"){
-        prediction = "Possible Respiratory Infection";
-    }
-    else if(symptom === "headache"){
-        prediction = "Possible Migraine or Stress";
-    }
-    else if(symptom === "cold"){
-        prediction = "Common Cold";
-    }
-    else if(symptom === "fatigue"){
-        prediction = "Possible Weakness or Anemia";
-    }
-    else{
-        prediction = "Please consult a doctor.";
-    }
+let result="";
 
-    document.getElementById("result").innerHTML =
-        "AI Suggestion: " + prediction;
+if(symptom.includes("fever")){
+result="🤒 Possible Viral Infection";
 }
+else if(symptom.includes("cough")){
+result="🫁 Possible Respiratory Infection";
+}
+else if(symptom.includes("headache")){
+result="🧠 Possible Migraine or Stress";
+}
+else if(symptom.includes("cold")){
+result="🤧 Common Cold";
+}
+else if(symptom.includes("fatigue")){
+result="⚡ Possible Weakness or Anemia";
+}
+else{
+result="👨‍⚕️ Please consult a doctor.";
+}
+
+let box=document.getElementById("result");
+
+box.style.display="block";
+box.innerHTML=
+"<h3>AI Prediction</h3><br>"+result;
+
+}
+
 </script>
 
 </body>
